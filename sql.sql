@@ -1,0 +1,20 @@
+create database Library;
+use Library;
+#createing users table
+create table adminUser(adminId int primary key auto_increment,adminName varchar(40),email varchar(30) not null,contactNumber varchar(12) not null,password varchar(20) not null)auto_increment=100;
+drop table adminUser;
+select * from adminUser;	
+create table librarianUser(libraianId int primary key auto_increment,librarianName varchar(40),email varchar(30) not null,contactNumber varchar(12) not null,password varchar(20) not null)auto_increment=100;
+drop table studentUser;
+select * from studentUser;
+create table studentUser(studentId int primary key auto_increment,studentName varchar(40),email varchar(30) not null,contactNumber varchar(12) not null,password varchar(20) not null)auto_increment=100;
+create table allbooks(bookId int primary key auto_increment,ISBN text,book_Title text,Book_Author text,Year_Of_Publication int,Publisher text,Image_URL_S text,Image_URL_M text,Image_URL_L text);
+ desc allbooks;
+ drop table allbooks;
+ALTER TABLE allbooks ADD bookId int primary key auto_increment;
+select * from allbooks;
+select * from librarianUser;
+select * from issuedbook;
+ALTER TABLE allbooks RENAME COLUMN BookTitle TO BookTitle;
+create table issuedBook(student_id int,foreign key(student_id) references studentUser(studentId) on delete cascade,book_id int, foreign key(book_id) references allbooks(bookId));
+select * from issuedBook;
